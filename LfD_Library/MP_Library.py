@@ -4,7 +4,7 @@ import matplotlib.colors as mcolors
 
 colors = list(mcolors.TABLEAU_COLORS)
 import h5py
-from sim_metrics import *
+from .sim_metrics import *
 import math
 
 # Implementation for Library of Motion Primitives
@@ -35,20 +35,20 @@ class MP_Library(object):
                 min([self.metric(demo, old_demo) for old_demo in demo_list])
             )
             if self.DEBUG:
-                print("Class: " + class_key + ", Similarity: " + str(similarities[-1]))
+                print(f"Class: '{class_key}' - Similarity: {similarities[-1]:.3f}")
         if len(similarities) > 0 and min(similarities) < self.threshold:
             class_id = list(self.library.keys())[np.argmin(similarities)]
             self.library[class_id].append(demo)
             out = class_id
             if self.DEBUG:
-                print("Class matched: " + class_id)
+                print(f"Class matched: '{class_id}'")
         else:
             if name is None:
                 name = "demo" + str(self.get_num_demos())
             self.library[name] = [demo]
             out = name
             if self.DEBUG:
-                print("Class not matched, new class: " + name)
+                print(f"Class not matched, new class: '{name}'")
         return out
 
     def get_num_demos(self):
@@ -58,12 +58,12 @@ class MP_Library(object):
         return sum
 
     def display(self):
-        print("--------------")
-        print("--MP_Library--")
-        print("--------------")
+        print("------------------")
+        print("--- MP_Library ---")
+        print("------------------")
         for class_key, demo_list in self.library.items():
-            print(class_key, len(demo_list))
-        print("--------------")
+            print(f"+ {class_key}: {len(demo_list)}")
+        print("------------------")
         return
 
     def plot(self):
@@ -97,7 +97,7 @@ class MP_Library(object):
             plt.legend()
             plt.show()
         else:
-            print("Plotting not yet implemented!")
+            print("Plotting not yet implemented for more than 2 dimensions!")
         return
 
     def plot_separate(self):
@@ -140,7 +140,7 @@ class MP_Library(object):
                     row += 1
             plt.show()
         else:
-            print("Plotting not yet implemented!")
+            print("Plotting not yet implemented for more than 2 dimensions!")
         return
 
     def save_h5(self, filename="library.h5"):

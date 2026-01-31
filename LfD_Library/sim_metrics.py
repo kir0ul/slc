@@ -15,8 +15,15 @@ def COS_metric(x, y):
     for i in range(n_pts - 1):
         sum += (
             np.arccos(
-                np.dot(x[i + 1] - x[i], y[i + 1] - y[i])
-                / (np.linalg.norm(x[i + 1] - x[i]) * np.linalg.norm(y[i + 1] - y[i]))
+                np.clip(
+                    np.dot(x[i + 1] - x[i], y[i + 1] - y[i])
+                    / (
+                        np.linalg.norm(x[i + 1] - x[i])
+                        * np.linalg.norm(y[i + 1] - y[i])
+                    ),
+                    -1,
+                    1,
+                )
             )
             / np.pi
         )

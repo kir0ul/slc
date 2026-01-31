@@ -1,3 +1,4 @@
+*.bkp
 .direnv
 
 # Byte-compiled / optimized / DLL files

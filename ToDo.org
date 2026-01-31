@@ -1,15 +1,40 @@
 #+title: ToDo
 
 * Data
-** Record hand quaternions
+** DONE Record hand quaternions
 https://wiki.ros.org/tf2/Tutorials/Quaternions
 * Questions
 ** Hyperparam search for ruptures?
-*** [?] What's the use of a change point detection method if we already have activations functions?
+*** [X] What's the use of a change point detection method if we already have activations functions?
+For more general case
+** Better to save the raw timeseries or the skills objects?
+*** Keep both
 * Code
-** TODO Damping of DMP too high
+** KILL Damping of DMP too high
+** TODO Resample each segment to the same size
 * Next steps
+** Schema
 [[file:docs/framework-schema.drawio.png]]
+*** LfD learning after building library?
+*** DONE Rename to "Segmentation" only
 ** TODO Library of skills code
-** TODO Get data for new tasks
+** DONE Get data for new tasks
 ** Symbolic plan?
+** TODO Segment new data
+*** Input: HDF5 files
+*** Outputs: Arrays of segmented primitives
+** TODO Start draft
+* DONE Tasks
+** Clean in robosuite
+** Collect force?
+** Rosbag need to collect oriantations/quaternions
+*** Set only the final orientation
+** Set table only with boiler and cup?
+** Simplify subtask
+*** Just pour
+*** Open/fill/close
+** Remove cleaning to discover skill
+** Put objects in box/just mark objects
+** Use plastic bottle to pour beans
+** Drawer subtask to be discovered
+** Switch from DMP to elastic map
